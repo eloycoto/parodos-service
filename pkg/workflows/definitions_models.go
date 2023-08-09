@@ -1,6 +1,9 @@
 package workflows
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"net/url"
+)
 
 type Group struct {
 	Name       string `json:"name" minLength:"4" maxLength:"16" example:"kogito-examples"`
@@ -13,9 +16,20 @@ type GroupDetails struct {
 }
 
 type Workflow struct {
+	Host           string            `json:"host" required: "true"`
 	Meta           map[string]string `json:"meta"`
 	Name           string            `json:"name" minLength:"3" example:"fahrenheit_to_celsius"`
 	InputArguments json.RawMessage   `json:"input_arguments" swaggertype:"string" example:"{ 'fahrenheit': 100 }"`
+}
+
+func (w *Workflow) GetHost() (*url.URL, error) {
+	return url.Parse(w.Host)
+}
+
+func (w *Workflow) ValidateInputData() error {
+	// @TODO: given the Workflow DataInputStream validate it against what the
+	// user submit.
+	return nil
 }
 
 type WorkflowExecution struct {
