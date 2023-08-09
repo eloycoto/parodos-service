@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/parodos-dev/parodos-service/docs"
+	"github.com/parodos-dev/parodos-service/pkg/executions"
 	"github.com/parodos-dev/parodos-service/pkg/workflows"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -26,6 +27,9 @@ func main() {
 
 	workflows.InitWorkflows(router)
 
+	workflowService := workflows.NewWorkflowServiceImpl()
+
+	executions.InitExecutions(router, workflowService)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	err := router.Run()

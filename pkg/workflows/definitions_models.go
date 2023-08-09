@@ -26,7 +26,7 @@ func (w *Workflow) GetHost() (*url.URL, error) {
 	return url.Parse(w.Host)
 }
 
-func (w *Workflow) ValidateInputData() error {
+func (w *Workflow) ValidateInputData(map[string]interface{}) error {
 	// @TODO: given the Workflow DataInputStream validate it against what the
 	// user submit.
 	return nil

@@ -234,6 +234,9 @@ const docTemplate = `{
         "pkg_workflows.Workflow": {
             "type": "object",
             "properties": {
+                "host": {
+                    "type": "string"
+                },
                 "input_arguments": {
                     "type": "string",
                     "example": "{ 'fahrenheit': 100 }"

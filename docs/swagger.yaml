@@ -39,6 +39,8 @@ definitions:
     type: object
   pkg_workflows.Workflow:
     properties:
+      host:
+        type: string
       input_arguments:
         example: '{ ''fahrenheit'': 100 }'
         type: string
