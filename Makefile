@@ -21,6 +21,9 @@ install-swag:
 
 ##@ Development
 
+build: ## Build the api project
+	go build $(API)
+
 run: ## Run the api project
 	go run $(API)
 
